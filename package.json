@@ -1,0 +1,37 @@
+{
+  "name": "bus-seat-booking-api",
+  "version": "1.0.0",
+  "description": "Bus ticket booking api",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "dev": "nodemon --exec ts-node index.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumankavibala/bus-seat-booking-node-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sumankavibala/bus-seat-booking-node-js/issues"
+  },
+  "homepage": "https://github.com/sumankavibala/bus-seat-booking-node-js#readme",
+  "dependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.6.0",
+    "@types/pg": "^8.20.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14",
+    "pg": "^8.20.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  }
+}
