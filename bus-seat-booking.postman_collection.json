@@ -239,7 +239,7 @@
   "variable": [
     {
       "key": "baseUrl",
-      "value": "http://localhost:3000",
+      "value": "http://3.109.49.191:3000",
       "type": "string"
     },
     {
