@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { getTickets, getTicketStatus, getTicketUser, updateTicket, resetServer } from "../controllers/ticketController";
+import { authMiddleware } from "../middleware/authMiddleware";
 
-const authRoutes = Router();
+const ticketRoutes = Router();
 
-authRoutes.get('/', getTickets);
-authRoutes.get('/:seatNumber', getTicketStatus);
-authRoutes.get('/:seatNumber/user', getTicketUser);
-authRoutes.put('/:seatNumber', updateTicket);
-authRoutes.post('/reset', resetServer);
+ticketRoutes.get('/', authMiddleware, getTickets);
+ticketRoutes.get('/:seatNumber', authMiddleware, getTicketStatus);
+ticketRoutes.get('/:seatNumber/user', authMiddleware, getTicketUser);
+ticketRoutes.put('/:seatNumber', authMiddleware, updateTicket);
+ticketRoutes.post('/reset', authMiddleware, resetServer);
 
-export default authRoutes;
+export default ticketRoutes;
