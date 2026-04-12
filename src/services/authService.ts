@@ -1,7 +1,8 @@
 import bcryptjs from 'bcryptjs';
 import { pool } from '../config/db';
+import jwt from 'jsonwebtoken';
 
-
+const JWT_SECRET = process.env.JWT_SECRET as string;
 export const registerUser = async(firstname: string, lastname: string, email: string, passwordString: string): Promise<{ success: boolean; error?: string }> => {
   try {
     const passwordHash = await bcryptjs.hash(passwordString, 10);
@@ -18,7 +19,7 @@ export const registerUser = async(firstname: string, lastname: string, email: st
   }
 }
 
-export const loginUser = async(email: string, passwordString: string): Promise<{ success: boolean; error?: string }> => {
+export const loginUser = async(email: string, passwordString: string): Promise<{ success: boolean; accessToken?: string; error?: string }> => {
   try {
     const result = await pool.query(
       `SELECT * FROM users WHERE email = $1`,
@@ -32,8 +33,10 @@ export const loginUser = async(email: string, passwordString: string): Promise<{
     if(!isPasswordValid){
       return {success: false, error: 'Invalid password'};
     }
-    return {success: true};
+    const token = jwt.sign({id: user.id}, JWT_SECRET, {expiresIn: '1h'});
+    return {success: true, accessToken: token};
   } catch (error: any) {
+    console.log(`Error authenticating user: ${error}`);
     return {success: false, error: 'Error authenticating user'};
   }
 }

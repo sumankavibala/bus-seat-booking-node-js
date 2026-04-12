@@ -34,14 +34,14 @@ export const login = async(req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const {success, error} = await loginUser(email, password);
+    const {success, accessToken, error} = await loginUser(email, password);
 
     if(!success){
       res.status(400).json({message: error});
       return;
     }
 
-    res.status(200).json({message: 'User logged in successfully'});
+    res.status(200).json({message: 'User logged in successfully', accessToken});
   } catch (error) {
     console.log(`Error logging in user: ${error}`);
     res.status(500).json({message: 'Internal server error'});
