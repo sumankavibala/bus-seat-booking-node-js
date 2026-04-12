@@ -1,7 +1,7 @@
 {
   "name": "bus-seat-booking-api",
   "version": "1.0.0",
-  "description": "Bus ticket booking api",
+  "description": "Bus Seat Booking API",
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
